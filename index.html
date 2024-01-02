@@ -26,88 +26,41 @@
     </div>
 </body>
 <script>
-    // console.log("test")
-    // const url = 'https://corsproxy.io/?' + encodeURIComponent('https://bihamk.ba/bs/spi/radari/93');
-    // fetch(url).then(response => 
-    // response.text()
-    // )
-    // .then(text => console.log(text));
-    var a = `<h5><strong>Stacionarni radari</strong></h5>
-<ul>
-    <li></li>
-            <li>M-16.4 Bristovi </li> 
-            <li>M-5 Jajce (Donje Pijavice) </li> 
-            <li>M-5 Kalibunar, općina Travnik (kod BP INA) </li> 
-            <li>M-5 Vitez (kod Impregnacije) </li> 
-            <li>M-5.1 Kaonik-Kiseljak, u naselju Kaćuni </li> 
-            <li>M-5.1 M-5.1 Brnjaci </li> 
-            <li>M-16.4 Nević Polje-Novi Travnik </li> 
-            <li>M-16.2 Gornji Vakuf/Uskoplje, u naselju Trnovača </li> 
-            <li>M-5 Busovača </li> 
-            <li>M-16.2 Vrbanja </li> 
-    </ul>
-
-<h5><strong>Nestacionarni radari</strong></h5>   
-
- 
-<ul>
-    <li><a class="ps" data-id="94" href="#"><i class="icon-location"></i>PS Travnik</a></li>
-            
-    <li> Najavljene radarske kontrole za  01. 01. 2024.  - <p>PS TRAVNIK<br /></p>
-<p>08:30 do 10:30 sati Kalibunar<br />12:00 do 14:00 sati Turbe<br />16:30 do 18:30 sati Donje Putićevo<br />20:00 do 21:30 sati Ciglana</p></li> 
-    </ul>
-<ul>
-    <li><a class="ps" data-id="99" href="#"><i class="icon-location"></i>PS Gornji Vakuf</a></li>
-            
-    <li> Najavljene radarske kontrole za  01. 01. 2024.  - <p>PS GORNJI VAKUF/USKOPLJE</p>
-<p>08:30 do 10:00 sati ulica Vrbaska<br />12:00 do 13:30 sati Krupa<br />17:00 do 18:30 sati Ploča<br />22:30 do 00:00 sati Duratbegović Dolac</p></li> 
-    </ul>
-<ul>
-    <li><a class="ps" data-id="98" href="#"><i class="icon-location"></i>PS Donji Vakuf</a></li>
-            
-    <li> Najavljene radarske kontrole za  01. 01. 2024.  - <p>PS DONJI VAKUF<br /></p>
-<p>07:30 do 08:30 sati Titova<br />10:45 do 11:45 sati Komar<br />18:30 do 19:30 sati Nova Travnička<br />23:00 do 00:00 sati Prusac</p></li> 
-    </ul>
-<ul>
-    <li><a class="ps" data-id="97" href="#"><i class="icon-location"></i>PS Bugojno</a></li>
-            
-    <li> Najavljene radarske kontrole za  01. 01. 2024.  - <p>PS BUGOJNO</p>
-<p>17:00 do 18:30 sati Bugojno-Donji Vakuf, lok. Miličevića kuće<br />19:00 do 20:30 sati Bugojno-Gornji Vakuf/Uskoplje, Zlavast<br />17:00 do 18:30 sati Bugojno-Novi Travnik, Bristovi<br />19:00 do 20:30 sati ulica Slobode (GUMA)</p></li> 
-    </ul>
-<ul>
-    <li><a class="ps" data-id="95" href="#"><i class="icon-location"></i>PS Vitez</a></li>
-            
-    <li> Najavljene radarske kontrole za  01. 01. 2024.  - <p>PS VITEZ<br /></p>
-<p>15:00 do 17:00 sati M-5 Bila<br />17:00 do 19:00 sati ulica Lašvanska<br />20:00 do 21:00 sati R-441 Dubravica<br />21:00 do 22:00 sati M-5 Šantići</p></li> 
-    </ul>`;
-    var contentPlace = document.getElementsByClassName("content");
-    contentPlace[0].innerHTML = a;
-    var uls = document.querySelectorAll(".content ul");
-    var wantedUls = [];
-    var fullSchedule = [];
-    for (let i = 1; i < uls.length; i++) {
-        wantedUls[i] = uls[i];
-    }
-    console.log(wantedUls);
-    wantedUls.forEach(element => {
-        var city = element.children[1].children[0];
-        var schedule = element.children[1].children[1];
-        var object = {city: city.innerHTML, schedule: schedule.innerHTML};
-        fullSchedule.push(object);
-    });
-    console.log(fullSchedule);
-    var favouritesHtml = "";
-    fullSchedule.forEach(element => {
-        if(element.city.toLowerCase().includes("donji vakuf") || element.city.toLowerCase().includes("bugojno")){
-            console.log(element);
-            favouritesHtml += `<div>
-            <h3>` + element.city + `</h3>
-            <div>` + element.schedule + `</div>
-        </div>`;
+    console.log("test")
+    const url = 'https://corsproxy.io/?' + encodeURIComponent('https://bihamk.ba/bs/spi/radari/93');
+    fetch(url).then(response => 
+    response.text()
+    )
+    .then(text => {
+        var contentPlace = document.getElementsByClassName("content");
+        contentPlace[0].innerHTML = text;
+        var uls = document.querySelectorAll(".content ul");
+        var wantedUls = [];
+        var fullSchedule = [];
+        for (let i = 1; i < uls.length; i++) {
+            wantedUls[i] = uls[i];
         }
+        console.log(wantedUls);
+        wantedUls.forEach(element => {
+            var city = element.children[1].children[0];
+            var schedule = element.children[1].children[1];
+            var object = {city: city.innerHTML, schedule: schedule.innerHTML};
+            fullSchedule.push(object);
+        });
+        console.log(fullSchedule);
+        var favouritesHtml = "";
+        fullSchedule.forEach(element => {
+            if(element.city.toLowerCase().includes("donji vakuf") || element.city.toLowerCase().includes("bugojno")){
+                console.log(element);
+                favouritesHtml += `<div>
+                <h3>` + element.city + `</h3>
+                <div>` + element.schedule + `</div>
+            </div>`;
+            }
+        });
+        console.log(favouritesHtml);
+        var favourites = document.getElementById("favourites");
+        favourites.innerHTML = favouritesHtml;
     });
-    console.log(favouritesHtml);
-    var favourites = document.getElementById("favourites");
-    favourites.innerHTML = favouritesHtml;
 
 </script>
